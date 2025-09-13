@@ -1,0 +1,176 @@
+table_name,field_name,field_description,table_description
+camps_projects,camp_id,معرف المخيم (مفتاح رئيسي),جدول المخيمات والمشاريع الأساسي
+camps_projects,camp_name,اسم المخيم/المشروع,جدول المخيمات والمشاريع الأساسي
+camps_projects,camp_type,نوع المخيم (خارجي/داخلي-سلمان/داخلي-اخر),جدول المخيمات والمشاريع الأساسي
+camps_projects,location,الموقع,جدول المخيمات والمشاريع الأساسي
+camps_projects,partner_organization,الجهة الشريكة,جدول المخيمات والمشاريع الأساسي
+camps_projects,start_date,تاريخ البدء,جدول المخيمات والمشاريع الأساسي
+camps_projects,end_date,تاريخ الانتهاء,جدول المخيمات والمشاريع الأساسي
+camps_projects,status,الحالة (مخطط/جاري/مكتمل/ملغى),جدول المخيمات والمشاريع الأساسي
+camps_projects,description,وصف المخيم,جدول المخيمات والمشاريع الأساسي
+camps_projects,target_beneficiaries,العدد المستهدف من المستفيدين,جدول المخيمات والمشاريع الأساسي
+camps_projects,actual_beneficiaries,العدد الفعلي للمستفيدين,جدول المخيمات والمشاريع الأساسي
+camps_projects,created_by,منشئ السجل,جدول المخيمات والمشاريع الأساسي
+camps_projects,created_date,تاريخ الإنشاء,جدول المخيمات والمشاريع الأساسي
+camps_projects,updated_date,تاريخ آخر تحديث,جدول المخيمات والمشاريع الأساسي
+staff_roles,role_id,معرف الدور (مفتاح رئيسي),جدول الأدوار الوظيفية
+staff_roles,role_name,اسم الدور,جدول الأدوار الوظيفية
+staff_roles,role_description,وصف الدور,جدول الأدوار الوظيفية
+staff_roles,responsibilities,المسؤوليات,جدول الأدوار الوظيفية
+staff_roles,required_qualifications,المؤهلات المطلوبة,جدول الأدوار الوظيفية
+staff_roles,is_medical,هل الدور طبي؟,جدول الأدوار الوظيفية
+staff_members,staff_id,معرف الموظف (مفتاح رئيسي),جدول أعضاء الفريق
+staff_members,full_name,الاسم الكامل,جدول أعضاء الفريق
+staff_members,employee_id,الرقم الوظيفي,جدول أعضاء الفريق
+staff_members,phone,رقم الهاتف,جدول أعضاء الفريق
+staff_members,email,البريد الإلكتروني,جدول أعضاء الفريق
+staff_members,department,القسم,جدول أعضاء الفريق
+staff_members,qualifications,المؤهلات,جدول أعضاء الفريق
+staff_members,experience_years,سنوات الخبرة,جدول أعضاء الفريق
+staff_members,specialization,التخصص,جدول أعضاء الفريق
+staff_members,emergency_contact,جهة الاتصال للطوارئ,جدول أعضاء الفريق
+staff_members,status,الحالة (نشط/غير نشط),جدول أعضاء الفريق
+staff_members,hire_date,تاريخ التوظيف,جدول أعضاء الفريق
+camp_assignments,assignment_id,معرف التكليف (مفتاح رئيسي),جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,camp_id,معرف المخيم (مفتاح خارجي),جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,staff_id,معرف الموظف (مفتاح خارجي),جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,role_id,معرف الدور (مفتاح خارجي),جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,assignment_date,تاريخ التكليف,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,start_date,تاريخ بداية التكليف,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,end_date,تاريخ نهاية التكليف,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,specific_tasks,المهام المحددة,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,daily_allowance,البدل اليومي,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,transportation_allowance,بدل المواصلات,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,accommodation_type,نوع السكن,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,assignment_status,حالة التكليف,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,assigned_by,المكلف من قبل,جدول تكليفات أعضاء الفريق للمخيمات
+camp_assignments,notes,ملاحظات,جدول تكليفات أعضاء الفريق للمخيمات
+patients_beneficiaries,patient_id,معرف المريض (مفتاح رئيسي),جدول المرضى والمستفيدين
+patients_beneficiaries,registration_number,رقم التسجيل,جدول المرضى والمستفيدين
+patients_beneficiaries,full_name,الاسم الكامل,جدول المرضى والمستفيدين
+patients_beneficiaries,age,العمر,جدول المرضى والمستفيدين
+patients_beneficiaries,gender,الجنس,جدول المرضى والمستفيدين
+patients_beneficiaries,phone,رقم الهاتف,جدول المرضى والمستفيدين
+patients_beneficiaries,address,العنوان,جدول المرضى والمستفيدين
+patients_beneficiaries,governorate,المحافظة,جدول المرضى والمستفيدين
+patients_beneficiaries,medical_history,التاريخ المرضي,جدول المرضى والمستفيدين
+patients_beneficiaries,current_medications,الأدوية الحالية,جدول المرضى والمستفيدين
+patients_beneficiaries,allergies,الحساسيات,جدول المرضى والمستفيدين
+patients_beneficiaries,emergency_contact,جهة الاتصال للطوارئ,جدول المرضى والمستفيدين
+patients_beneficiaries,registration_date,تاريخ التسجيل,جدول المرضى والمستفيدين
+patients_beneficiaries,camp_id,معرف المخيم (مفتاح خارجي),جدول المرضى والمستفيدين
+patients_beneficiaries,referred_by,محول من قبل,جدول المرضى والمستفيدين
+medical_services,service_id,معرف الخدمة (مفتاح رئيسي),جدول الخدمات الطبية المقدمة
+medical_services,patient_id,معرف المريض (مفتاح خارجي),جدول الخدمات الطبية المقدمة
+medical_services,camp_id,معرف المخيم (مفتاح خارجي),جدول الخدمات الطبية المقدمة
+medical_services,doctor_id,معرف الطبيب (مفتاح خارجي),جدول الخدمات الطبية المقدمة
+medical_services,service_type,نوع الخدمة (كشف/عملية/علاج/نظارات),جدول الخدمات الطبية المقدمة
+medical_services,service_date,تاريخ الخدمة,جدول الخدمات الطبية المقدمة
+medical_services,diagnosis,التشخيص,جدول الخدمات الطبية المقدمة
+medical_services,treatment_plan,خطة العلاج,جدول الخدمات الطبية المقدمة
+medical_services,prescribed_medications,الأدوية الموصوفة,جدول الخدمات الطبية المقدمة
+medical_services,glasses_prescription,وصفة النظارات,جدول الخدمات الطبية المقدمة
+medical_services,surgery_type,نوع العملية,جدول الخدمات الطبية المقدمة
+medical_services,surgery_outcome,نتيجة العملية,جدول الخدمات الطبية المقدمة
+medical_services,follow_up_required,هل يحتاج متابعة؟,جدول الخدمات الطبية المقدمة
+medical_services,follow_up_date,تاريخ المتابعة,جدول الخدمات الطبية المقدمة
+medical_services,service_cost,تكلفة الخدمة,جدول الخدمات الطبية المقدمة
+medical_services,notes,ملاحظات,جدول الخدمات الطبية المقدمة
+inventory_items,item_id,معرف المادة (مفتاح رئيسي),جدول المستلزمات والمخزون
+inventory_items,item_name,اسم المادة,جدول المستلزمات والمخزون
+inventory_items,item_category,فئة المادة (أدوية/أجهزة/مستهلكات/نظارات),جدول المستلزمات والمخزون
+inventory_items,item_code,رمز المادة,جدول المستلزمات والمخزون
+inventory_items,supplier,المورد,جدول المستلزمات والمخزون
+inventory_items,unit_of_measure,وحدة القياس,جدول المستلزمات والمخزون
+inventory_items,unit_cost,تكلفة الوحدة,جدول المستلزمات والمخزون
+inventory_items,current_stock,المخزون الحالي,جدول المستلزمات والمخزون
+inventory_items,minimum_stock,الحد الأدنى للمخزون,جدول المستلزمات والمخزون
+inventory_items,expiry_date,تاريخ الانتهاء,جدول المستلزمات والمخزون
+inventory_items,storage_location,مكان التخزين,جدول المستلزمات والمخزون
+inventory_items,batch_number,رقم الدفعة,جدول المستلزمات والمخزون
+inventory_items,is_consumable,هل قابل للاستهلاك؟,جدول المستلزمات والمخزون
+inventory_items,requires_refrigeration,يحتاج تبريد؟,جدول المستلزمات والمخزون
+inventory_transactions,transaction_id,معرف المعاملة (مفتاح رئيسي),جدول معاملات المخزون
+inventory_transactions,camp_id,معرف المخيم (مفتاح خارجي),جدول معاملات المخزون
+inventory_transactions,item_id,معرف المادة (مفتاح خارجي),جدول معاملات المخزون
+inventory_transactions,transaction_type,نوع المعاملة (استلام/صرف/تحويل/تالف),جدول معاملات المخزون
+inventory_transactions,transaction_date,تاريخ المعاملة,جدول معاملات المخزون
+inventory_transactions,quantity,الكمية,جدول معاملات المخزون
+inventory_transactions,unit_cost,تكلفة الوحدة,جدول معاملات المخزون
+inventory_transactions,total_cost,التكلفة الإجمالية,جدول معاملات المخزون
+inventory_transactions,source_destination,المصدر أو الوجهة,جدول معاملات المخزون
+inventory_transactions,handled_by,تم التعامل من قبل,جدول معاملات المخزون
+inventory_transactions,reference_document,المستند المرجعي,جدول معاملات المخزون
+inventory_transactions,notes,ملاحظات,جدول معاملات المخزون
+financial_budget,budget_id,معرف الميزانية (مفتاح رئيسي),جدول الميزانيات والمصروفات
+financial_budget,camp_id,معرف المخيم (مفتاح خارجي),جدول الميزانيات والمصروفات
+financial_budget,budget_category,فئة الميزانية (نقل/تغذية/سكن/طبي/إداري),جدول الميزانيات والمصروفات
+financial_budget,budget_subcategory,الفئة الفرعية,جدول الميزانيات والمصروفات
+financial_budget,allocated_amount,المبلغ المخصص,جدول الميزانيات والمصروفات
+financial_budget,spent_amount,المبلغ المصروف,جدول الميزانيات والمصروفات
+financial_budget,remaining_amount,المبلغ المتبقي,جدول الميزانيات والمصروفات
+financial_budget,expense_date,تاريخ المصروف,جدول الميزانيات والمصروفات
+financial_budget,vendor,المورد,جدول الميزانيات والمصروفات
+financial_budget,invoice_number,رقم الفاتورة,جدول الميزانيات والمصروفات
+financial_budget,receipt_number,رقم الإيصال,جدول الميزانيات والمصروفات
+financial_budget,payment_method,طريقة الدفع,جدول الميزانيات والمصروفات
+financial_budget,approved_by,موافق عليه من قبل,جدول الميزانيات والمصروفات
+financial_budget,description,وصف المصروف,جدول الميزانيات والمصروفات
+financial_budget,supporting_documents,المستندات الداعمة,جدول الميزانيات والمصروفات
+daily_reports,report_id,معرف التقرير (مفتاح رئيسي),جدول التقارير اليومية
+daily_reports,camp_id,معرف المخيم (مفتاح خارجي),جدول التقارير اليومية
+daily_reports,report_date,تاريخ التقرير,جدول التقارير اليومية
+daily_reports,reporting_staff_id,معرف المقرر (مفتاح خارجي),جدول التقارير اليومية
+daily_reports,patients_registered,المرضى المسجلين,جدول التقارير اليومية
+daily_reports,patients_examined,المرضى المفحوصين,جدول التقارير اليومية
+daily_reports,surgeries_performed,العمليات المنجزة,جدول التقارير اليومية
+daily_reports,glasses_distributed,النظارات الموزعة,جدول التقارير اليومية
+daily_reports,medications_dispensed,الأدوية الصروفة,جدول التقارير اليومية
+daily_reports,staff_attendance,حضور الموظفين,جدول التقارير اليومية
+daily_reports,equipment_status,حالة المعدات,جدول التقارير اليومية
+daily_reports,challenges_faced,التحديات المواجهة,جدول التقارير اليومية
+daily_reports,achievements,الإنجازات,جدول التقارير اليومية
+daily_reports,recommendations,التوصيات,جدول التقارير اليومية
+daily_reports,weather_conditions,الأحوال الجوية,جدول التقارير اليومية
+daily_reports,security_situation,الوضع الأمني,جدول التقارير اليومية
+media_documentation,media_id,معرف التوثيق (مفتاح رئيسي),جدول التوثيق الإعلامي
+media_documentation,camp_id,معرف المخيم (مفتاح خارجي),جدول التوثيق الإعلامي
+media_documentation,media_type,نوع الإعلام (صورة/فيديو/تقرير/مقال),جدول التوثيق الإعلامي
+media_documentation,title,العنوان,جدول التوثيق الإعلامي
+media_documentation,description,الوصف,جدول التوثيق الإعلامي
+media_documentation,file_path,مسار الملف,جدول التوثيق الإعلامي
+media_documentation,file_size,حجم الملف,جدول التوثيق الإعلامي
+media_documentation,capture_date,تاريخ التقاط/إنشاء,جدول التوثيق الإعلامي
+media_documentation,photographer_reporter,المصور/المراسل,جدول التوثيق الإعلامي
+media_documentation,location,الموقع,جدول التوثيق الإعلامي
+media_documentation,people_featured,الأشخاص المذكورون,جدول التوثيق الإعلامي
+media_documentation,keywords,الكلمات المفتاحية,جدول التوثيق الإعلامي
+media_documentation,publication_status,حالة النشر,جدول التوثيق الإعلامي
+media_documentation,published_where,منشور أين,جدول التوثيق الإعلامي
+media_documentation,copyright_info,معلومات حقوق الطبع,جدول التوثيق الإعلامي
+media_documentation,approval_status,حالة الموافقة,جدول التوثيق الإعلامي
+partnerships,partnership_id,معرف الشراكة (مفتاح رئيسي),جدول الشراكات والجهات الداعمة
+partnerships,partner_name,اسم الشريك,جدول الشراكات والجهات الداعمة
+partnerships,partner_type,نوع الشريك (حكومي/خاص/منظمة),جدول الشراكات والجهات الداعمة
+partnerships,contact_person,الشخص المسؤول,جدول الشراكات والجهات الداعمة
+partnerships,phone,رقم الهاتف,جدول الشراكات والجهات الداعمة
+partnerships,email,البريد الإلكتروني,جدول الشراكات والجهات الداعمة
+partnerships,address,العنوان,جدول الشراكات والجهات الداعمة
+partnerships,partnership_start,بداية الشراكة,جدول الشراكات والجهات الداعمة
+partnerships,partnership_end,نهاية الشراكة,جدول الشراكات والجهات الداعمة
+partnerships,services_provided,الخدمات المقدمة,جدول الشراكات والجهات الداعمة
+partnerships,financial_contribution,المساهمة المالية,جدول الشراكات والجهات الداعمة
+partnerships,in_kind_contribution,المساهمة العينية,جدول الشراكات والجهات الداعمة
+partnerships,contract_details,تفاصيل العقد,جدول الشراكات والجهات الداعمة
+partnerships,partnership_status,حالة الشراكة,جدول الشراكات والجهات الداعمة
+performance_indicators,indicator_id,معرف المؤشر (مفتاح رئيسي),جدول مؤشرات الأداء
+performance_indicators,camp_id,معرف المخيم (مفتاح خارجي),جدول مؤشرات الأداء
+performance_indicators,indicator_name,اسم المؤشر,جدول مؤشرات الأداء
+performance_indicators,target_value,القيمة المستهدفة,جدول مؤشرات الأداء
+performance_indicators,actual_value,القيمة الفعلية,جدول مؤشرات الأداء
+performance_indicators,achievement_percentage,نسبة الإنجاز,جدول مؤشرات الأداء
+performance_indicators,measurement_date,تاريخ القياس,جدول مؤشرات الأداء
+performance_indicators,measurement_period,فترة القياس,جدول مؤشرات الأداء
+performance_indicators,data_source,مصدر البيانات,جدول مؤشرات الأداء
+performance_indicators,responsible_person,الشخص المسؤول,جدول مؤشرات الأداء
+performance_indicators,comments,تعليقات,جدول مؤشرات الأداء

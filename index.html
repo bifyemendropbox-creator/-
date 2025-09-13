@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المخيمات والمشاريع الطبية</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- شاشة تسجيل الدخول -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>نظام إدارة المخيمات والمشاريع الطبية</h1>
+                <p>مؤسسة البصر الخيرية العالمية</p>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الدور الوظيفي</label>
+                    <select class="form-control" id="userRole" required>
+                        <option value="">اختر الدور</option>
+                        <option value="camp_manager">مدير مخيم</option>
+                        <option value="medical_director">مدير طبي</option>
+                        <option value="store_keeper">أمين مخازن</option>
+                        <option value="media_officer">إعلامي</option>
+                        <option value="assistant">مساند</option>
+                        <option value="coordinator">منظم</option>
+                        <option value="driver">سائق</option>
+                        <option value="technical_supervisor">رئيس فنيين</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- شريط التنقل العلوي -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h2 id="pageTitle">لوحة التحكم الرئيسية</h2>
+                </div>
+                <div class="header-right">
+                    <span id="currentUser" class="user-info"></span>
+                    <button class="btn btn--outline btn--sm" id="logoutBtn">تسجيل الخروج</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- القائمة الجانبية -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>القوائم</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" data-view="dashboard" class="menu-item active">📊 لوحة التحكم</a></li>
+                <li><a href="#" data-view="camps" class="menu-item">🏕️ إدارة المخيمات</a></li>
+                <li><a href="#" data-view="staff" class="menu-item">👥 إدارة الفريق</a></li>
+                <li><a href="#" data-view="patients" class="menu-item">🏥 الخدمات الطبية</a></li>
+                <li><a href="#" data-view="inventory" class="menu-item">📦 إدارة المخازن</a></li>
+                <li><a href="#" data-view="finance" class="menu-item">💰 الإدارة المالية</a></li>
+                <li><a href="#" data-view="reports" class="menu-item">📈 التقارير والتحليلات</a></li>
+                <li><a href="#" data-view="media" class="menu-item">📸 التوثيق الإعلامي</a></li>
+                <li><a href="#" data-view="settings" class="menu-item">⚙️ الإعدادات</a></li>
+            </ul>
+        </nav>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- لوحة التحكم -->
+            <div id="dashboardView" class="view active">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏕️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="activeCamps">2</div>
+                            <div class="stat-label">المخيمات النشطة</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalBeneficiaries">347</div>
+                            <div class="stat-label">إجمالي المستفيدين</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalBudget">125,000</div>
+                            <div class="stat-label">الميزانية الإجمالية</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="performanceScore">91%</div>
+                            <div class="stat-label">مؤشر الأداء</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="dashboard-left">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>مؤشرات الأداء</h3>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="performanceChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>الخدمات المقدمة</h3>
+                                <div class="services-list">
+                                    <div class="service-item">
+                                        <span class="service-icon">👁️</span>
+                                        <span class="service-name">كشف طبي</span>
+                                        <span class="service-count">347</span>
+                                    </div>
+                                    <div class="service-item">
+                                        <span class="service-icon">🏥</span>
+                                        <span class="service-name">عمليات جراحية</span>
+                                        <span class="service-count">45</span>
+                                    </div>
+                                    <div class="service-item">
+                                        <span class="service-icon">👓</span>
+                                        <span class="service-name">نظارات طبية</span>
+                                        <span class="service-count">123</span>
+                                    </div>
+                                    <div class="service-item">
+                                        <span class="service-icon">💊</span>
+                                        <span class="service-name">أدوية</span>
+                                        <span class="service-count">234</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-right">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>الأنشطة الحديثة</h3>
+                                <div class="activity-feed">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">✅</div>
+                                        <div class="activity-content">
+                                            <p>تم إكمال تكليف الفريق الطبي لمخيم صعدة</p>
+                                            <small>منذ ساعتين</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">📋</div>
+                                        <div class="activity-content">
+                                            <p>تم إنشاء تقرير يومي جديد</p>
+                                            <small>منذ 4 ساعات</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">💰</div>
+                                        <div class="activity-content">
+                                            <p>تم اعتماد مصروفات المخيم</p>
+                                            <small>منذ يوم واحد</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>التنبيهات</h3>
+                                <div class="alerts-list">
+                                    <div class="alert alert--warning">
+                                        <strong>تذكير:</strong> يجب تقديم التقرير اليومي قبل نهاية اليوم
+                                    </div>
+                                    <div class="alert alert--info">
+                                        <strong>إشعار:</strong> موعد بدء مخيم عدن بعد 9 أيام
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إدارة المخيمات -->
+            <div id="campsView" class="view">
+                <div class="view-header">
+                    <h2>إدارة المخيمات</h2>
+                    <button class="btn btn--primary" id="addCampBtn">إضافة مخيم جديد</button>
+                </div>
+                
+                <div class="camps-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="camp-header">
+                                <h3>مخيم البصر - صعدة</h3>
+                                <span class="status status--success">نشط</span>
+                            </div>
+                            <div class="camp-details">
+                                <p><strong>الموقع:</strong> صعدة، اليمن</p>
+                                <p><strong>التاريخ:</strong> 1 ديسمبر - 15 ديسمبر 2024</p>
+                                <p><strong>المستفيدون:</strong> 347 من أصل 500</p>
+                                <p><strong>الميزانية:</strong> 32,000 من أصل 50,000</p>
+                            </div>
+                            <div class="camp-actions">
+                                <button class="btn btn--outline btn--sm">عرض التفاصيل</button>
+                                <button class="btn btn--secondary btn--sm">تحديث</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <div class="camp-header">
+                                <h3>مشروع مركز الملك سلمان - عدن</h3>
+                                <span class="status status--warning">تخطيط</span>
+                            </div>
+                            <div class="camp-details">
+                                <p><strong>الموقع:</strong> عدن، اليمن</p>
+                                <p><strong>التاريخ:</strong> 20 ديسمبر 2024 - 5 يناير 2025</p>
+                                <p><strong>المستفيدون المستهدفون:</strong> 800</p>
+                                <p><strong>الميزانية:</strong> 75,000</p>
+                            </div>
+                            <div class="camp-actions">
+                                <button class="btn btn--outline btn--sm">عرض التفاصيل</button>
+                                <button class="btn btn--secondary btn--sm">تحديث</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إدارة الفريق -->
+            <div id="staffView" class="view">
+                <div class="view-header">
+                    <h2>إدارة الفريق</h2>
+                    <button class="btn btn--primary" id="addStaffBtn">إضافة عضو جديد</button>
+                </div>
+                
+                <div class="staff-table-container">
+                    <table class="staff-table">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>الدور</th>
+                                <th>الهاتف</th>
+                                <th>البريد الإلكتروني</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>د. أحمد محمد علي</td>
+                                <td>مدير طبي</td>
+                                <td>+967-123-456-789</td>
+                                <td>ahmed@albasar.org</td>
+                                <td><span class="status status--success">نشط</span></td>
+                                <td>
+                                    <button class="btn btn--outline btn--sm">تعديل</button>
+                                    <button class="btn btn--secondary btn--sm">عرض</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>فاطمة سعد محمد</td>
+                                <td>مدير مخيم</td>
+                                <td>+967-123-456-788</td>
+                                <td>fatima@albasar.org</td>
+                                <td><span class="status status--success">نشط</span></td>
+                                <td>
+                                    <button class="btn btn--outline btn--sm">تعديل</button>
+                                    <button class="btn btn--secondary btn--sm">عرض</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- الخدمات الطبية -->
+            <div id="patientsView" class="view">
+                <div class="view-header">
+                    <h2>الخدمات الطبية</h2>
+                    <button class="btn btn--primary" id="addPatientBtn">تسجيل مريض جديد</button>
+                </div>
+                
+                <div class="medical-services">
+                    <div class="service-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">👁️</div>
+                            <div class="stat-content">
+                                <div class="stat-number">347</div>
+                                <div class="stat-label">كشف طبي</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏥</div>
+                            <div class="stat-content">
+                                <div class="stat-number">45</div>
+                                <div class="stat-label">عمليات جراحية</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👓</div>
+                            <div class="stat-content">
+                                <div class="stat-number">123</div>
+                                <div class="stat-label">نظارات طبية</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💊</div>
+                            <div class="stat-content">
+                                <div class="stat-number">234</div>
+                                <div class="stat-label">أدوية</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>تسجيل خدمة طبية جديدة</h3>
+                            <form class="patient-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">اسم المريض</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">نوع الخدمة</label>
+                                        <select class="form-control" required>
+                                            <option value="">اختر نوع الخدمة</option>
+                                            <option value="examination">كشف طبي</option>
+                                            <option value="surgery">عملية جراحية</option>
+                                            <option value="glasses">نظارات طبية</option>
+                                            <option value="medication">أدوية</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">ملاحظات</label>
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn--primary">حفظ الخدمة</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إدارة المخازن -->
+            <div id="inventoryView" class="view">
+                <div class="view-header">
+                    <h2>إدارة المخازن</h2>
+                    <button class="btn btn--primary" id="addInventoryBtn">إضافة صنف جديد</button>
+                </div>
+                
+                <div class="inventory-content">
+                    <div class="inventory-summary">
+                        <div class="summary-card">
+                            <h3>ملخص المخزون</h3>
+                            <div class="summary-item">
+                                <span class="summary-label">إجمالي الأصناف:</span>
+                                <span class="summary-value">156</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">أصناف منتهية الصلاحية:</span>
+                                <span class="summary-value alert">12</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">أصناف قاربت على النفاد:</span>
+                                <span class="summary-value warning">8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inventory-table">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>اسم الصنف</th>
+                                    <th>الكمية المتوفرة</th>
+                                    <th>تاريخ الشراء</th>
+                                    <th>تاريخ الانتهاء</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>أدوية مضادة للالتهاب</td>
+                                    <td>150 علبة</td>
+                                    <td>2024-10-01</td>
+                                    <td>2025-10-01</td>
+                                    <td><span class="status status--success">متوفر</span></td>
+                                    <td>
+                                        <button class="btn btn--outline btn--sm">تعديل</button>
+                                        <button class="btn btn--secondary btn--sm">حركة</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>قطرات عين</td>
+                                    <td>45 زجاجة</td>
+                                    <td>2024-09-15</td>
+                                    <td>2025-03-15</td>
+                                    <td><span class="status status--warning">قارب على النفاد</span></td>
+                                    <td>
+                                        <button class="btn btn--outline btn--sm">تعديل</button>
+                                        <button class="btn btn--secondary btn--sm">حركة</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الإدارة المالية -->
+            <div id="financeView" class="view">
+                <div class="view-header">
+                    <h2>الإدارة المالية</h2>
+                    <button class="btn btn--primary" id="addExpenseBtn">إضافة مصروف</button>
+                </div>
+                
+                <div class="finance-overview">
+                    <div class="budget-cards">
+                        <div class="budget-card">
+                            <h3>الميزانية الإجمالية</h3>
+                            <div class="budget-amount">125,000 ريال</div>
+                        </div>
+                        <div class="budget-card">
+                            <h3>المصروفات</h3>
+                            <div class="budget-amount spent">32,000 ريال</div>
+                        </div>
+                        <div class="budget-card">
+                            <h3>المتبقي</h3>
+                            <div class="budget-amount remaining">93,000 ريال</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>تفاصيل المصروفات</h3>
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="expenseChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التقارير والتحليلات -->
+            <div id="reportsView" class="view">
+                <div class="view-header">
+                    <h2>التقارير والتحليلات</h2>
+                    <button class="btn btn--primary" id="generateReportBtn">إنشاء تقرير جديد</button>
+                </div>
+                
+                <div class="reports-content">
+                    <div class="report-types">
+                        <div class="report-type-card">
+                            <h3>تقرير يومي</h3>
+                            <p>تقرير شامل للأنشطة اليومية</p>
+                            <button class="btn btn--outline">إنشاء</button>
+                        </div>
+                        <div class="report-type-card">
+                            <h3>تقرير مالي</h3>
+                            <p>ملخص المصروفات والميزانيات</p>
+                            <button class="btn btn--outline">إنشاء</button>
+                        </div>
+                        <div class="report-type-card">
+                            <h3>تقرير ختامي</h3>
+                            <p>تقرير شامل لإنجازات المخيم</p>
+                            <button class="btn btn--outline">إنشاء</button>
+                        </div>
+                        <div class="report-type-card">
+                            <h3>تقرير المستفيدين</h3>
+                            <p>إحصائيات المرضى والخدمات</p>
+                            <button class="btn btn--outline">إنشاء</button>
+                        </div>
+                    </div>
+
+                    <div class="recent-reports">
+                        <h3>التقارير الحديثة</h3>
+                        <div class="reports-list">
+                            <div class="report-item">
+                                <div class="report-info">
+                                    <h4>تقرير يومي - مخيم صعدة</h4>
+                                    <p>تاريخ الإنشاء: 2024-12-10</p>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn--outline btn--sm">عرض</button>
+                                    <button class="btn btn--secondary btn--sm">تحميل</button>
+                                </div>
+                            </div>
+                            <div class="report-item">
+                                <div class="report-info">
+                                    <h4>تقرير مالي - نوفمبر 2024</h4>
+                                    <p>تاريخ الإنشاء: 2024-12-01</p>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn btn--outline btn--sm">عرض</button>
+                                    <button class="btn btn--secondary btn--sm">تحميل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التوثيق الإعلامي -->
+            <div id="mediaView" class="view">
+                <div class="view-header">
+                    <h2>التوثيق الإعلامي</h2>
+                    <button class="btn btn--primary" id="uploadMediaBtn">رفع ملف جديد</button>
+                </div>
+                
+                <div class="media-content">
+                    <div class="media-stats">
+                        <div class="media-stat">
+                            <span class="media-icon">📸</span>
+                            <div class="media-count">
+                                <div class="count-number">156</div>
+                                <div class="count-label">صورة</div>
+                            </div>
+                        </div>
+                        <div class="media-stat">
+                            <span class="media-icon">🎥</span>
+                            <div class="media-count">
+                                <div class="count-number">23</div>
+                                <div class="count-label">فيديو</div>
+                            </div>
+                        </div>
+                        <div class="media-stat">
+                            <span class="media-icon">📄</span>
+                            <div class="media-count">
+                                <div class="count-number">45</div>
+                                <div class="count-label">تقرير</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-gallery">
+                        <h3>المعرض</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <div class="media-placeholder">📸</div>
+                                <div class="media-info">
+                                    <h4>صور مخيم صعدة</h4>
+                                    <p>15 صورة</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="media-placeholder">🎥</div>
+                                <div class="media-info">
+                                    <h4>فيديو العمليات</h4>
+                                    <p>مدة: 5 دقائق</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="media-placeholder">📄</div>
+                                <div class="media-info">
+                                    <h4>تقرير إعلامي</h4>
+                                    <p>PDF - 2.3 MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الإعدادات -->
+            <div id="settingsView" class="view">
+                <div class="view-header">
+                    <h2>الإعدادات</h2>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="settings-section">
+                        <h3>إعدادات النظام</h3>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <label class="form-label">لغة النظام</label>
+                                <select class="form-control">
+                                    <option value="ar">العربية</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label class="form-label">المنطقة الزمنية</label>
+                                <select class="form-control">
+                                    <option value="asia/riyadh">آسيا/الرياض (+3)</option>
+                                    <option value="asia/yemen">آسيا/صنعاء (+3)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>إدارة المستخدمين</h3>
+                        <div class="users-management">
+                            <button class="btn btn--primary">إضافة مستخدم جديد</button>
+                            <button class="btn btn--outline">إدارة الصلاحيات</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>النسخ الاحتياطي</h3>
+                        <div class="backup-controls">
+                            <button class="btn btn--secondary">إنشاء نسخة احتياطية</button>
+                            <button class="btn btn--outline">استعادة النسخ الاحتياطية</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- النوافذ المنبثقة -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">عنوان النافذة</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- محتوى النافذة -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
